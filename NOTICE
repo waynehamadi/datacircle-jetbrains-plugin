@@ -1,0 +1,7 @@
+Datacircle MCP Server for JetBrains IDEs
+Copyright 2026 Datacircle
+
+Adapted from Postman's postman-mcp-jetbrains-plugin
+(https://github.com/postmanlabs/postman-mcp-jetbrains-plugin),
+Copyright 2026 Postman, Inc., under the Apache License, Version 2.0.
+The files it came from say so at their top, and what we changed.

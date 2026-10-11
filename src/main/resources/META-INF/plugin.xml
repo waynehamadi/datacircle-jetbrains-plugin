@@ -1,0 +1,55 @@
+<idea-plugin>
+    <id>dev.datacircle.mcp-server</id>
+    <name>Datacircle MCP Server</name>
+    <vendor email="wayne@datacircle.dev" url="https://datacircle.dev">Datacircle</vendor>
+
+    <description><![CDATA[
+        <p>Use <a href="https://datacircle.dev">Datacircle</a>'s MCP server from your IDE's AI agents:
+        AI Assistant, Junie, GitHub Copilot, Codex and Claude.</p>
+
+        <p>It gets a LinkedIn profile from its URL, through Up2Data, HarvestAPI or Fetchin.</p>
+
+        <p><b>Getting started</b></p>
+        <ol>
+            <li>Log in at <a href="https://datacircle.dev/login">datacircle.dev/login</a> with your work email.
+            Your API key is on the page once you're in.</li>
+            <li>Install the plugin, click <b>Connect</b> and paste your key.</li>
+            <li>Turn the server on when your IDE asks.</li>
+        </ol>
+
+        <p>The plugin adds <code>https://api.datacircle.dev/mcp</code> to the MCP server list your AI agents share,
+        with your key as a Bearer token. To change the key: <b>Tools | Set Datacircle API Key</b>.</p>
+
+        <p>Sign up at datacircle.dev with your work email: a $5 credit, that's 2,105 LinkedIn profiles at $2.375 per 1,000.
+        See <a href="https://docs.datacircle.dev/pricing">Pricing</a> and the
+        <a href="https://docs.datacircle.dev/mcp-server">MCP server's docs</a>.</p>
+    ]]></description>
+
+    <change-notes><![CDATA[
+        <b>0.1.0</b>
+        <ul>
+            <li>Adds Datacircle's MCP server to your IDE's AI agents, with your API key.</li>
+        </ul>
+    ]]></change-notes>
+
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <postStartupActivity implementation="dev.datacircle.mcp.DatacircleMcpStartupActivity"/>
+        <notificationGroup id="Datacircle MCP Server" displayType="BALLOON"/>
+    </extensions>
+
+    <applicationListeners>
+        <listener class="dev.datacircle.mcp.DatacircleMcpPluginLifecycleListener"
+                  topic="com.intellij.ide.plugins.DynamicPluginListener"/>
+    </applicationListeners>
+
+    <actions>
+        <action id="dev.datacircle.mcp.SetupAction"
+                class="dev.datacircle.mcp.DatacircleMcpSetupAction"
+                text="Set Datacircle API Key"
+                description="Set the API key your AI agents send to Datacircle's MCP server">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+        </action>
+    </actions>
+</idea-plugin>
